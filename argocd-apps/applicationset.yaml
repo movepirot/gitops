@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-environments
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            namespace: dev
+            cluster: https://kubernetes.default.svc
+          - env: test
+            namespace: test
+            cluster: https://kubernetes.default.svc
+          - env: prod
+            namespace: prod
+            cluster: https://kubernetes.default.svc
+  template:
+    metadata:
+      name: "app-{{env}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/movepirot/gitops
+        targetRevision: main
+        path: environments/{{env}}
+      destination:
+        server: "{{cluster}}"
+        namespace: "{{namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
