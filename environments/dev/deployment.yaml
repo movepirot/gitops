@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/your-org/your-app:latest  # updated by CI pipeline
+          image: ghcr.io/movepirot/app:ce6710b
           ports:
             - containerPort: 8080
           env:
