@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/movepirot/app:e35d865
+          image: ghcr.io/movepirot/app:c8b5652
           ports:
             - containerPort: 8080
           env:
