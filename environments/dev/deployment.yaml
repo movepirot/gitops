@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/movepirot/app:c8b5652
+          image: ghcr.io/movepirot/cloudbees-demo:7638868
           ports:
             - containerPort: 8080
           env:
